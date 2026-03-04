@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nov2026-deployment
+  namespace: nov2026
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nov2026-app
+  template:
+    metadata:
+      labels:
+        app: nov2026-app
+    spec:
+      containers:
+        - name: web
+          image: nginx
+          ports:
+            - containerPort: 8080

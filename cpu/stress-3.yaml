@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: stress-3
+  namespace: cpu-stress
+spec:
+  containers:
+    - name: stress
+      image: busybox
+      command: ["sh","-c","while true; do usleep 100000; done"]
