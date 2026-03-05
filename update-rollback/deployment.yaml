@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: web1
-  namespace: app
+  namespace: nginx
 spec:
-  replicas: 3
+  replicas: 4
   selector:
     matchLabels:
       app: web1
@@ -14,7 +14,7 @@ spec:
         app: web1
     spec:
       containers:
-        - name: web1-container
-          image: 1pro/nginx:1.13.7
+        - name: nginx
+          image: nginx:1.13.7
           ports:
             - containerPort: 80
