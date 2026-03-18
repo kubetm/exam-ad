@@ -3,17 +3,11 @@ kind: Pod
 metadata:
   name: backend
   namespace: firewall
-spec:
-  selector:
-    matchLabels:
-      app: backend
-  template:
-    metadata:
-      labels:
-        app: backend
-    spec:
-      containers:
-        - name: backend
-          image: 1pro/exam
-          ports:
-            - containerPort: 8080
+  labels:
+    app: backend
+  spec:
+    containers:
+      - name: backend
+        image: 1pro/exam
+        ports:
+          - containerPort: 8080

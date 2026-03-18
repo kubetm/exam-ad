@@ -3,17 +3,11 @@ kind: Pod
 metadata:
   name: db
   namespace: firewall
-spec:
-  selector:
-    matchLabels:
-      app: db
-  template:
-    metadata:
-      labels:
-        app: db
-    spec:
-      containers:
-        - name: db
-          image: 1pro/exam
-          ports:
-            - containerPort: 8080
+  labels:
+    app: db
+  spec:
+    containers:
+      - name: db
+        image: 1pro/exam
+        ports:
+          - containerPort: 8080
