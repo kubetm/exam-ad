@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  namespace: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:1.14.2
+          ports:
+            - containerPort: 8081
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+              httpHeaders:
+                - name: Custom-Header
+                  value: Readiness
+            initialDelaySeconds: 5
+            periodSeconds: 3
+            failureThreshold: 3
+          volumeMounts:
+            - name: config
+              mountPath: /etc/nginx/conf.d/
+            - name: probe
+              mountPath: /usr/share/nginx/html
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command: ["sh", "-c", "echo healthy > /probe/healthz"]
+          volumeMounts:
+            - name: probe
+              mountPath: /probe
+      volumes:
+        - name: probe
+          emptyDir: {}
+        - name: config
+          configMap:
+            name: config-cm

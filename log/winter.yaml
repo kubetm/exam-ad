@@ -6,4 +6,13 @@ spec:
   containers:
     - name: winter
       image: busybox
-      command: ["sh","-c","echo Hello from winter pod && sleep 3600"]
+      command:
+        - sh
+        - -c
+        - |
+          i=1
+          while true; do
+            echo "Hello from winter - $i"
+            i=$((i+1))
+            sleep 2
+          done

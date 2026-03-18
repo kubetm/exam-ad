@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: exam-range
+  namespace: resource
+spec:
+  limits:
+    - default:
+        memory: 32Mi
+      defaultRequest:
+        memory: 16Mi
+      max:
+        memory: 640Mi
+      type: Container

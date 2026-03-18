@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nov2026-deployment
-  namespace: nov2026
+  name: nginx-deployment
+  namespace: resource
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nov2026-app
+      app: nginx
   template:
     metadata:
       labels:
-        app: nov2026-app
+        app: nginx
     spec:
       containers:
-        - name: web
+        - name: nginx
           image: nginx
           ports:
             - containerPort: 80

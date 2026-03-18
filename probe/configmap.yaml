@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-cm
+  namespace: app
+data:
+  default.conf: |
+    server {
+        listen 8081;
+        server_name localhost;
+
+        location /healthz {
+            if ($http_custom_header != "Readiness") {
+                return 403;
+            }
+            root /usr/share/nginx/html; 
+            index healthz;
+        }
+    }

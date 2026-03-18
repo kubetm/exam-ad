@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sc-deploy
-  namespace: prod
+  name: backend
+  namespace: backend
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: hotfix
+      app: backend
   template:
     metadata:
       labels:
-        app: hotfix
+        app: backend
     spec:
       containers:
-        - name: exam
+        - name: backend
           image: 1pro/exam
           ports:
             - containerPort: 8080

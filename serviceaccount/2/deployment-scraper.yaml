@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scraper
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scraper
+  template:
+    metadata:
+      labels:
+        app: scraper
+    spec:
+      serviceAccountName: default
+      containers:
+        - name: server
+          image: bitnami/kubectl
+          command:
+            - sh
+            - -c
+          args:
+            - |
+              while true; do
+                POD_IPS=$(kubectl get pods -l app=node-exporter -o jsonpath='{.items[*].status.podIP}')
+                for ip in $POD_IPS; do
+                  echo "Call http://$ip:9100/metrics"
+                  curl -sf "http://$ip:9100/metrics"
+                done
+                sleep 10
+              done
