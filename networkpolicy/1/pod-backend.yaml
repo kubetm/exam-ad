@@ -5,9 +5,9 @@ metadata:
   namespace: firewall
   labels:
     app: backend
-  spec:
-    containers:
-      - name: backend
-        image: 1pro/exam
-        ports:
-          - containerPort: 8080
+spec:
+  containers:
+    - name: backend
+      image: 1pro/exam
+      ports:
+        - containerPort: 8080

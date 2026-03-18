@@ -5,9 +5,9 @@ metadata:
   namespace: firewall
   labels:
     app: db
-  spec:
-    containers:
-      - name: db
-        image: 1pro/exam
-        ports:
-          - containerPort: 8080
+spec:
+  containers:
+    - name: db
+      image: 1pro/exam
+      ports:
+        - containerPort: 8080

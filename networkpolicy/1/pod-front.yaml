@@ -5,9 +5,9 @@ metadata:
   namespace: firewall
   labels:
     app: front
-  spec:
-    containers:
-      - name: front
-        image: 1pro/exam
-        ports:
-          - containerPort: 8080
+spec:
+  containers:
+    - name: front
+      image: 1pro/exam
+      ports:
+        - containerPort: 8080
