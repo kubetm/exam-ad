@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  namespace: frontend
+  namespace: dev
 spec:
   selector:
     matchLabels:
@@ -14,5 +14,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: curlimages/curl
-          command: ['sh', '-c', 'while true; do echo "logging"; sleep 2; done']
+          image: 1pro/exam
+          ports:
+            - containerPort: 8080

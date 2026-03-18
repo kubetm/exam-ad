@@ -1,12 +1,12 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: access-front
+  name: allow-db
   namespace: firewall
 spec:
   podSelector:
     matchLabels:
-      app: front
+      app: db
   policyTypes:
   - Ingress
   - Egress
@@ -14,9 +14,9 @@ spec:
   - to:
     - podSelector:
         matchLabels:
-          access-all: "true"
+          allow-db: "true"
   ingress:
   - from:
     - podSelector:
         matchLabels:
-          access-all: "true"
+          allow-db: "true"
