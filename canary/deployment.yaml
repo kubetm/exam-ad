@@ -17,6 +17,37 @@ spec:
     spec:
       containers:
         - name: web
-          image: 1pro/exam
+          image: nginx:1.14.2
           ports:
-            - containerPort: 8080
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: volume
+      initContainers:
+        - name: init
+          image: busybox:stable
+          command:
+            - sh
+            - -c
+            - |
+               echo $POD_NAME > /usr/share/nginx/html/index.html
+               cat /var/lib/pod/* >> /usr/share/nginx/html/index.html
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              name: volume
+            - mountPath: /var/lib/pod
+              name: info
+      volumes:
+        - name: volume
+          emptyDir: {}
+        - name: info
+          downwardAPI:
+            items:
+              - path: labels
+                fieldRef:
+                  fieldPath: metadata.labels
