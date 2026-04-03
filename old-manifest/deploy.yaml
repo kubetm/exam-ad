@@ -1,12 +1,9 @@
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: web-app
 spec:
   replicas: 1
-  selector:
-    matchLabels:
-      app: web
   template:
     metadata:
       labels:
@@ -17,3 +14,8 @@ spec:
           image: 1pro/exam
           ports:
             - containerPort: 8080
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: "invalid"
+      maxUnavailable: "invalid"
