@@ -18,16 +18,6 @@ spec:
           image: nginx:1.14.2
           ports:
             - containerPort: 8081
-          readinessProbe:
-            httpGet:
-              path: /healthz
-              port: 8081
-              httpHeaders:
-                - name: Custom-Header
-                  value: Readiness
-            initialDelaySeconds: 5
-            periodSeconds: 3
-            failureThreshold: 3
           volumeMounts:
             - name: config
               mountPath: /etc/nginx/conf.d/

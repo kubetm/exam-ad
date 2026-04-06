@@ -10,9 +10,6 @@ data:
         server_name localhost;
 
         location /healthz {
-            if ($http_custom_header != "Readiness") {
-                return 403;
-            }
             root /usr/share/nginx/html; 
             index healthz;
         }
