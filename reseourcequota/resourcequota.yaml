@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: nginx-resource-quota
+  name: pod-resource-quota
   namespace: resources
 spec:
   hard:
