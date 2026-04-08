@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: LimitRange
 metadata:
-  name: exam-range
-  namespace: resource
+  name: limit-range
+  namespace: database
 spec:
   limits:
     - default:

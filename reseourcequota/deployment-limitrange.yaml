@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: exam-deployment
-  namespace: resource
+  name: mysql
+  namespace: database
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: exam
+      app: mysql
   template:
     metadata:
       labels:
-        app: exam
+        app: mysql
     spec:
       containers:
-        - name: exam
-          image: 1pro/exam
+        - name: mysql
+          image: 1pro/app
           ports:
             - containerPort: 8080

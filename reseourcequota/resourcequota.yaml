@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: ResourceQuota
 metadata:
-  name: nginx-quota
-  namespace: resource
+  name: nginx-resource-quota
+  namespace: resources
 spec:
   hard:
     limits.cpu: "100"
