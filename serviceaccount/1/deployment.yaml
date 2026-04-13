@@ -13,7 +13,6 @@ spec:
       labels:
         app: server
     spec:
-      serviceAccountName: default
       containers:
         - name: server
           image: bitnami/kubectl
