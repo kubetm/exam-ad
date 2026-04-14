@@ -2,7 +2,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: pod-list
-  namespace: beta
+  namespace: dev
 rules:
   - apiGroups: [""]
     resources: ["pods"]
